@@ -11,4 +11,15 @@ class ChitterSpec extends Specification {
     then:
     result == null
   }
+
+  def 'no users stored at the start'() {
+    given:
+    def chitter = new Chitter()
+
+    when:
+    def result = chitter.getUsersSignedUp()
+
+    then:
+    result == []
+  }
 }
