@@ -9,25 +9,21 @@ class ChitterSpec extends Specification {
 
   def 'no user has logged in at start'() {
     expect:
-    def result = chitter.getActiveUser()
-
-    result == null
+    chitter.getActiveUser() == null
   }
 
   def 'no users stored at the start'() {
     expect:
-    def result = chitter.getUsersSignedUp()
-
-    result == []
+    chitter.getUsersSignedUp() == []
   }
 
-  def 'User can login be signed up automatically'() {
+  def 'User can login and be signed up automatically'() {
     when:
     chitter.login('Spike')
 
     then:
-    chitter.getActiveUser() == 'Spike'
-    chitter.getUsersSignedUp().contains('Spike') == true
+    chitter.getActiveUser().getName() == 'Spike'
+    chitter.getUsersSignedUp()[0].getName() == 'Spike'
   }
 
   def 'User can log out and deletes as active user'() {
@@ -37,7 +33,7 @@ class ChitterSpec extends Specification {
 
     then:
     chitter.getActiveUser() == null
-    chitter.getUsersSignedUp().contains('Spike') == true
+    chitter.getUsersSignedUp()[0].getName() == 'Spike'
   }
 
   def 'User can login again, and not automatically sign up'() {
@@ -47,7 +43,7 @@ class ChitterSpec extends Specification {
     chitter.login('Spike')
 
     then:
-    chitter.getActiveUser() == 'Spike'
+    chitter.getActiveUser().getName() == 'Spike'
     chitter.getUsersSignedUp().size() == 1
   }
 }
