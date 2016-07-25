@@ -1,25 +1,33 @@
 import spock.lang.*
 
 class ChitterSpec extends Specification {
-  def 'no user has logged in at start'() {
-    given:
-    def chitter = new Chitter()
+  def chitter
 
-    when:
+  def setup() {
+    chitter = new Chitter()
+  }
+
+  def 'no user has logged in at start'() {
+    expect:
     def result = chitter.getActiveUser()
 
-    then:
     result == null
   }
 
   def 'no users stored at the start'() {
-    given:
-    def chitter = new Chitter()
-
-    when:
+    expect:
     def result = chitter.getUsersSignedUp()
 
-    then:
     result == []
+  }
+
+  def 'User can login be signed up automatically'() {
+    when:
+    chitter.login('Spike')
+
+    then:
+    chitter.getActiveUser() == 'Spike'
+    chitter.getUsersSignedUp().contains('Spike') == true
+
   }
 }

@@ -14,4 +14,9 @@ class Chitter {
   def getUsersSignedUp(){
     this.usersSignedUp
   }
+
+  def login(name) {
+    this.activeUser = name
+    this.usersSignedUp.push(name)
+  }
 }
