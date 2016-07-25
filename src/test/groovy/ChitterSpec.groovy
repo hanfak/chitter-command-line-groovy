@@ -28,6 +28,16 @@ class ChitterSpec extends Specification {
     then:
     chitter.getActiveUser() == 'Spike'
     chitter.getUsersSignedUp().contains('Spike') == true
-
   }
+
+  def 'User can log out and deletes as active user'() {
+    when:
+    chitter.login('Spike')
+    chitter.logOut()
+
+    then:
+    chitter.getActiveUser() == null
+    chitter.getUsersSignedUp().contains('Spike') == true
+  }
+
 }

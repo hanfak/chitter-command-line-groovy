@@ -19,4 +19,8 @@ class Chitter {
     this.activeUser = name
     this.usersSignedUp.push(name)
   }
+
+  def logOut() {
+    this.activeUser = null
+  }
 }
