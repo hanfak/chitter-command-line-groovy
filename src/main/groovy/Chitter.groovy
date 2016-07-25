@@ -16,17 +16,26 @@ class Chitter {
   }
 
   def login(name) {
+    loginUser(name)
+  }
 
-    if(this.usersSignedUp.find { it == name}) {
-      this.activeUser = name
-    }
-    else {
-      this.activeUser = name
+  def logOut() {
+    logOutUser()
+  }
+
+  private def findUser(name) {
+    this.usersSignedUp.find { it == name}
+  }
+
+  private def loginUser(name) {
+    this.activeUser = name
+
+    if(!findUser(name)) {
       this.usersSignedUp.push(name)
     }
   }
 
-  def logOut() {
+  private def logOutUser() {
     this.activeUser = null
   }
 }
