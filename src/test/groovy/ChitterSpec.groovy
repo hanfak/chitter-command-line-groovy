@@ -40,4 +40,14 @@ class ChitterSpec extends Specification {
     chitter.getUsersSignedUp().contains('Spike') == true
   }
 
+  def 'User can login again, and not automatically sign up'() {
+    when:
+    chitter.login('Spike')
+    chitter.logOut()
+    chitter.login('Spike')
+
+    then:
+    chitter.getActiveUser() == 'Spike'
+    chitter.getUsersSignedUp().size() == 1
+  }
 }
