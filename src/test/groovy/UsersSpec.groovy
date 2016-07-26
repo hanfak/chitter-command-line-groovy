@@ -19,7 +19,7 @@ class UsersSpec extends Specification {
 
   def 'User can login and be signed up automatically'() {
     when:
-    users.login('Spike')
+    users.loginUser('Spike')
 
     then:
     users.getLoggedInUser().getName() == 'Spike'
@@ -28,8 +28,8 @@ class UsersSpec extends Specification {
 
   def 'User can log out and deletes as active user'() {
     when:
-    users.login('Spike')
-    users.logOut()
+    users.loginUser('Spike')
+    users.logOutUser()
 
     then:
     users.getLoggedInUser() == null
@@ -38,12 +38,24 @@ class UsersSpec extends Specification {
 
   def 'User can login again, and not automatically sign up'() {
     when:
-    users.login('Spike')
-    users.logOut()
-    users.login('Spike')
+    users.loginUser('Spike')
+    users.logOutUser()
+    users.loginUser('Spike')
 
     then:
     users.getLoggedInUser().getName() == 'Spike'
     users.getListofUsers().size() == 1
+  }
+
+  def 'User can login with different user'() {
+    when:
+    users.loginUser('Spike')
+    users.logOutUser()
+    users.loginUser('Leo')
+
+    then:
+    users.getLoggedInUser().getName() == 'Leo'
+    users.getListofUsers().size() == 2
+    users.getListofUsers()[1].getName() == 'Leo'
   }
 }

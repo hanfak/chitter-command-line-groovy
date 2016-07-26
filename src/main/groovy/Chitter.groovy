@@ -24,15 +24,19 @@ class Chitter {
   }
 
   def addPost(message) {
+    createPost(message)
+  }
+
+  def viewPosts() {
+    this.posts
+  }
+
+  private def createPost(message) {
     if(this.getActiveUser() == null) {
       throw new OnlyLoggedInUsersCanPostException('Post not made: User must be logged in first')
     } else {
       this.posts.push(message)
     }
-  }
-
-  def viewPosts() {
-    this.posts
   }
 }
 

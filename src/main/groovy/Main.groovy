@@ -5,6 +5,8 @@ class Main {
     chitter.addPost('Hello this is my first post')
     chitter.addPost('Hello this is my second post')
     println(chitter.viewPosts())
+    chitter.logOut()
+    println(chitter.viewPosts())
 
     // def chitter = new Chitter()
     // println(chitter.getActiveUser())

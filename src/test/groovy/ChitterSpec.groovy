@@ -2,8 +2,10 @@ import spock.lang.*
 
 class ChitterSpec extends Specification {
   def chitter
+  // Users users
 
   def setup() {
+    // users = GroovyMock()
     chitter = new Chitter()
   }
 
@@ -14,36 +16,65 @@ class ChitterSpec extends Specification {
 
   def 'no users stored at the start'() {
     expect:
-    chitter.getUsersSignedUp() == []
+    chitter.getUsersSignedUp().getListofUsers() == []
   }
 
-  def 'User can login and be signed up automatically'() {
+  def 'Chitter can login a user'() {
     when:
     chitter.login('Spike')
 
     then:
     chitter.getActiveUser().getName() == 'Spike'
-    chitter.getUsersSignedUp()[0].getName() == 'Spike'
   }
 
-  def 'User can log out and deletes as active user'() {
+  def 'Chitter can logout a user'() {
     when:
     chitter.login('Spike')
     chitter.logOut()
 
     then:
     chitter.getActiveUser() == null
-    chitter.getUsersSignedUp()[0].getName() == 'Spike'
   }
 
-  def 'User can login again, and not automatically sign up'() {
+
+  // spying on  a method call is not working
+  // def 'Chitter can use login '() {
+  //   when:
+  //   chitter.login('Spike')
+  //
+  //   then:
+  //   1 * users.loginUser("Spike")
+  // }
+  // //
+  // def 'Chitter can logout a user'() {
+  //   when:
+  //   chitter.logOut()
+  //
+  //   then:
+  //   1 * users.logOutUser()
+  // }
+  def 'at start number of posts is 0'() {
+    expect:
+    chitter.viewPosts().size() == 0
+  }
+
+  def 'Cannot add a post if not logged in'() {
     when:
-    chitter.login('Spike')
-    chitter.logOut()
-    chitter.login('Spike')
+    chitter.addPost('Hello this is my first post')
 
     then:
-    chitter.getActiveUser().getName() == 'Spike'
-    chitter.getUsersSignedUp().size() == 1
+    chitter.viewPosts().size() == 0
+    def exception = thrown(OnlyLoggedInUsersCanPostException)
+    exception.message == 'Post not made: User must be logged in first'
+  }
+
+  def 'Can add a post if logged in'() {
+    when:
+    chitter.login('Spike')
+    chitter.addPost('Hello this is my first post')
+
+    then:
+    chitter.viewPosts().size() == 1
+    chitter.viewPosts()[0] == 'Hello this is my first post'
   }
 }
