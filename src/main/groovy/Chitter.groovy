@@ -38,6 +38,10 @@ class Chitter {
   }
 
   def follow(name) {
+    addUserToFollowers(name)
+  }
+
+  private def addUserToFollowers(name) {
     def userToFollow = this.getUsersSignedUp().lookForUser(name)
     if(!userToFollow) {
       throw new UserDoesNotExistException('User not follower: User must exist first')
