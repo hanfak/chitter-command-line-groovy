@@ -1,10 +1,12 @@
 class Chitter {
   private def usersSignedUp
   private def posts
+  private def postKlass
 
-  def Chitter(users = new Users()){
+  def Chitter(users = new Users(), Class postClass = Post){
     this.usersSignedUp = users
     this.posts = []
+    this.postKlass = postClass
   }
 
   def getActiveUser(){
@@ -32,10 +34,12 @@ class Chitter {
   }
 
   private def createPost(message) {
+    def aPost = postKlass.newInstance(message)
+
     if(this.getActiveUser() == null) {
       throw new OnlyLoggedInUsersCanPostException('Post not made: User must be logged in first')
     } else {
-      this.posts.push(message)
+      this.posts.push(aPost)
     }
   }
 }

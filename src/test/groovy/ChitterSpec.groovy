@@ -36,23 +36,6 @@ class ChitterSpec extends Specification {
     chitter.getActiveUser() == null
   }
 
-
-  // spying on  a method call is not working
-  // def 'Chitter can use login '() {
-  //   when:
-  //   chitter.login('Spike')
-  //
-  //   then:
-  //   1 * users.loginUser("Spike")
-  // }
-  // //
-  // def 'Chitter can logout a user'() {
-  //   when:
-  //   chitter.logOut()
-  //
-  //   then:
-  //   1 * users.logOutUser()
-  // }
   def 'at start number of posts is 0'() {
     expect:
     chitter.viewPosts().size() == 0
@@ -75,6 +58,23 @@ class ChitterSpec extends Specification {
 
     then:
     chitter.viewPosts().size() == 1
-    chitter.viewPosts()[0] == 'Hello this is my first post'
+    chitter.viewPosts()[0].getMessage() == 'Hello this is my first post'
   }
+
+  // spying on  a method call is not working
+  // def 'Chitter can use login '() {
+  //   when:
+  //   chitter.login('Spike')
+  //
+  //   then:
+  //   1 * users.loginUser("Spike")
+  // }
+  // //
+  // def 'Chitter can logout a user'() {
+  //   when:
+  //   chitter.logOut()
+  //
+  //   then:
+  //   1 * users.logOutUser()
+  // }
 }
