@@ -59,5 +59,19 @@ class UsersSpec extends Specification {
     users.getListofUsers()[1].getName() == 'Leo'
   }
 
+  def 'Can search for a user who has been logged in before'() {
+    when:
+    users.loginUser('Spike')
+    users.logOutUser()
+    users.loginUser('Nikesh')
+    users.logOutUser()
+    users.loginUser('Mary')
+    users.logOutUser()
+    users.loginUser('Leo')
+    def result = users.lookForUser('Nikesh')
+
+    then:
+    result.getName() == 'Nikesh' 
+  }
 
 }

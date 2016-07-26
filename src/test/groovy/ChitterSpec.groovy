@@ -106,24 +106,19 @@ class ChitterSpec extends Specification {
     chitter.getActiveUser().getFollowers().size() == 0
   }
 
-  // def 'can follow someone'() {
-  //   given:
-  //   chitter.login('Leo')
-  //   chitter.logOut()
-  //   chitter.login('Spike')
-  //
-  //   when:
-  //   chitter.follower('Leo')
-  //
-  //   then:
-  //   chitter.getActiveUser().getFollowers()[1].getName() =='Leo'
-  //   chitter.getActiveUser().getFollowers().size() == 1
-  // }
+  def 'can follow someone'() {
+    given:
+    chitter.login('Leo')
+    chitter.logOut()
+    chitter.login('Spike')
 
+    when:
+    chitter.follow('Leo')
 
-  // def 'can only follow someone if they are a user'() {
-  //   //chitter.follow(name)
-  // }
+    then:
+    chitter.getActiveUser().getFollowers()[0].getName() =='Leo'
+    chitter.getActiveUser().getFollowers().size() == 1
+  }
 
   // spying on  a method call is not working
   // def 'Chitter can use login '() {

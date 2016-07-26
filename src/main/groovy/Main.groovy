@@ -9,22 +9,25 @@ class Main {
     chitter.login('Spike')
     chitter.addPost('Hello this is my first post')
     chitter.addPost('Hello this is my second post')
-
+    println("spike " + chitter.getActiveUser())
     chitter.logOut()
 
     chitter.login('Leo')
     chitter.addPost('Other post ')
-
+    println("leo " + chitter.getActiveUser())
     chitter.logOut()
 
     chitter.login('Nikesh')
     chitter.addPost('what post by nikesh')
-
+    println("nikesh " + chitter.getActiveUser())
     chitter.logOut()
 
     chitter.login('Spike')
-    chitter.follow('Leo')
+    println(chitter.follow('Leo'))
+
+    println(chitter.getActiveUser().getFollowers())
     chitter.follow('Nikesh')
+    println(chitter.getActiveUser().getFollowers())
 
     chitter.viewUserPosts()
 

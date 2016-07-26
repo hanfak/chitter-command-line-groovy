@@ -37,6 +37,11 @@ class Chitter {
     findAUsersPosts(userName)
   }
 
+  def follow(name) {
+    def userToFollow = this.getUsersSignedUp().lookForUser(name)
+    getActiveUser().addFollower(userToFollow)
+  }
+
   private findAUsersPosts(userName) {
     def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
     this.viewPosts().findAll {it['user'] == theUser}
