@@ -33,9 +33,9 @@ class Chitter {
     this.posts
   }
 
-  def viewUserPosts() {
-    def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == getActiveUser().getName()}
-    def userPosts = this.viewPosts().findAll {it['user'] == theUser}
+  def viewUserPosts(userName = getActiveUser().getName()) {
+    def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
+    this.viewPosts().findAll {it['user'] == theUser}
   }
 
   private def createPost(message) {

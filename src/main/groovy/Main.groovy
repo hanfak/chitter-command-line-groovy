@@ -1,36 +1,61 @@
 class Main {
   static main(String[] args) {
-
-    // User story 2
+    //User Story 3
     def chitter = new Chitter()
-    
+
     chitter.login('Spike')
-
-    println(chitter.viewPosts())
-
     chitter.addPost('Hello this is my first post')
     chitter.addPost('Hello this is my second post')
-    println(chitter.viewPosts())
-
-    println('Spike posts')
-    chitter.viewUserPosts().each {println(it['post'].getMessage())}
 
     chitter.logOut()
 
     chitter.login('Leo')
-    chitter.addPost('Other post')
-    println(chitter.viewPosts())
-
-    println('Leo posts')
-    chitter.viewUserPosts().each {println(it['post'].getMessage())}
+    chitter.addPost('Othrepoer ')
 
     chitter.logOut()
 
-    chitter.login('Spike')
+    println('view all posts')
     println(chitter.viewPosts())
 
-    println('Spike posts')
-    chitter.viewUserPosts().each {println(it['post'].getMessage())}
+    println('View Leo posts')
+    chitter.viewUserPosts('Leo')
+    chitter.viewUserPosts('Leo').each {println(it['post'].getMessage())}
+
+    println('View Spike posts')
+    chitter.viewUserPosts('Spike')
+    chitter.viewUserPosts('Spike').each {println(it['post'].getMessage())}
+
+
+    // User story 2
+    // def chitter = new Chitter()
+    //
+    // chitter.login('Spike')
+    //
+    // println(chitter.viewPosts())
+    //
+    // chitter.addPost('Hello this is my first post')
+    // chitter.addPost('Hello this is my second post')
+    // println(chitter.viewPosts())
+    //
+    // println('Spike posts')
+    // chitter.viewUserPosts().each {println(it['post'].getMessage())}
+    //
+    // chitter.logOut()
+    //
+    // chitter.login('Leo')
+    // chitter.addPost('Other post')
+    // println(chitter.viewPosts())
+    //
+    // println('Leo posts')
+    // chitter.viewUserPosts().each {println(it['post'].getMessage())}
+    //
+    // chitter.logOut()
+    //
+    // chitter.login('Spike')
+    // println(chitter.viewPosts())
+    //
+    // println('Spike posts')
+    // chitter.viewUserPosts().each {println(it['post'].getMessage())}
 
     //USer story 1
     // def chitter = new Chitter()
