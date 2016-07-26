@@ -33,13 +33,18 @@ class Chitter {
     this.posts
   }
 
+  def viewUserPosts() {
+    def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == getActiveUser().getName()}
+    def userPosts = this.viewPosts().findAll {it['user'] == theUser}
+  }
+
   private def createPost(message) {
     def aPost = postKlass.newInstance(message)
 
     if(this.getActiveUser() == null) {
       throw new OnlyLoggedInUsersCanPostException('Post not made: User must be logged in first')
     } else {
-      this.posts.push(aPost)
+      this.posts.push(['post' : aPost, 'user' : this.getActiveUser()])
     }
   }
 }

@@ -58,8 +58,24 @@ class ChitterSpec extends Specification {
 
     then:
     chitter.viewPosts().size() == 1
-    chitter.viewPosts()[0].getMessage() == 'Hello this is my first post'
+    chitter.viewPosts()[0]['post'].getMessage() == 'Hello this is my first post'
   }
+
+  def 'Can view my posts'() {
+    when:
+    chitter.login('Spike')
+    chitter.addPost('Hello this is my first post')
+    chitter.logOut()
+    chitter.login('Leo')
+    chitter.addPost('A random post not by Spike')
+    chitter.logOut()
+    chitter.login('Spike')
+
+    then:
+    chitter.viewUserPosts().size() == 1
+    chitter.viewUserPosts()[0]['post'].getMessage() == 'Hello this is my first post'
+  }
+
 
   // spying on  a method call is not working
   // def 'Chitter can use login '() {

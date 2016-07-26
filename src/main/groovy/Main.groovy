@@ -1,13 +1,38 @@
 class Main {
   static main(String[] args) {
+
+    // User story 2
     def chitter = new Chitter()
+    
     chitter.login('Spike')
+
+    println(chitter.viewPosts())
+
     chitter.addPost('Hello this is my first post')
     chitter.addPost('Hello this is my second post')
     println(chitter.viewPosts())
+
+    println('Spike posts')
+    chitter.viewUserPosts().each {println(it['post'].getMessage())}
+
     chitter.logOut()
+
+    chitter.login('Leo')
+    chitter.addPost('Other post')
     println(chitter.viewPosts())
 
+    println('Leo posts')
+    chitter.viewUserPosts().each {println(it['post'].getMessage())}
+
+    chitter.logOut()
+
+    chitter.login('Spike')
+    println(chitter.viewPosts())
+
+    println('Spike posts')
+    chitter.viewUserPosts().each {println(it['post'].getMessage())}
+
+    //USer story 1
     // def chitter = new Chitter()
     // println(chitter.getActiveUser())
     // println(chitter.getUsersSignedUp().getListofUsers())
