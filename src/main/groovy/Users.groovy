@@ -4,9 +4,9 @@ class Users {
   private def userKlass
 
   def Users(Class userClass = User) {
-    activeUser = null
-    listOfUsers = []
-    userKlass = userClass
+    this.activeUser = null
+    this.listOfUsers = []
+    this.userKlass = userClass
   }
 
   def getLoggedInUser() {
@@ -17,8 +17,8 @@ class Users {
     this.listOfUsers
   }
 
-  def login(name) {
-    def aUser = userKlass.newInstance(name)
+  def loginUser(name) {
+    def aUser = this.userKlass.newInstance(name)
 
     if(findUser(aUser)) {
       this.activeUser = findUser(aUser)
@@ -28,7 +28,7 @@ class Users {
     }
   }
 
-  def logOut() {
+  def logOutUser() {
     this.activeUser = null
   }
 
