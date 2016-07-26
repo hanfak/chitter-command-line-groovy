@@ -58,4 +58,6 @@ class UsersSpec extends Specification {
     users.getListofUsers().size() == 2
     users.getListofUsers()[1].getName() == 'Leo'
   }
+
+
 }

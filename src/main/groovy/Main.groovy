@@ -1,6 +1,9 @@
 class Main {
   static main(String[] args) {
-    //User Story 3
+    //User Story 4
+    println()
+    println('----User Story 4 ----')
+
     def chitter = new Chitter()
 
     chitter.login('Spike')
@@ -14,19 +17,49 @@ class Main {
 
     chitter.logOut()
 
-    println('view all posts')
-    println(chitter.viewPosts())
+    chitter.login('Nikesh')
+    chitter.addPost('what post by nikesh')
 
-    println('View Leo posts')
-    println(chitter.viewUserPosts('Leo'))
-    chitter.viewUserPosts('Leo').each {println(it['post'].getMessage())}
+    chitter.logOut()
 
-    println('View Spike posts')
-    println(chitter.viewUserPosts('Spike'))
-    chitter.viewUserPosts('Spike').each {println(it['post'].getMessage())}
+    chitter.login('Spike')
+    chitter.follow('Leo')
+    chitter.follow('Nikesh')
 
+    chitter.viewUserPosts()
+
+
+    //User Story 3
+    // println()
+    // println('----User Story 3 ----')
+    //
+    // def chitter = new Chitter()
+    //
+    // chitter.login('Spike')
+    // chitter.addPost('Hello this is my first post')
+    // chitter.addPost('Hello this is my second post')
+    //
+    // chitter.logOut()
+    //
+    // chitter.login('Leo')
+    // chitter.addPost('Other post ')
+    //
+    // chitter.logOut()
+    //
+    // println('view all posts')
+    // println(chitter.viewPosts())
+    //
+    // println('View Leo posts')
+    // println(chitter.viewUserPosts('Leo'))
+    // chitter.viewUserPosts('Leo').each {println(it['post'].getMessage())}
+    //
+    // println('View Spike posts')
+    // println(chitter.viewUserPosts('Spike'))
+    // chitter.viewUserPosts('Spike').each {println(it['post'].getMessage())}
+    // println()
 
     // User story 2
+    // println('----User Story 2 ----')
     // def chitter = new Chitter()
     //
     // chitter.login('Spike')
@@ -50,14 +83,11 @@ class Main {
     // chitter.viewUserPosts().each {println(it['post'].getMessage())}
     //
     // chitter.logOut()
-    //
-    // chitter.login('Spike')
-    // println(chitter.viewPosts())
-    //
-    // println('Spike posts')
-    // chitter.viewUserPosts().each {println(it['post'].getMessage())}
+    // println()
+
 
     //USer story 1
+    //println('----User Story 1 ----')
     // def chitter = new Chitter()
     // println(chitter.getActiveUser())
     // println(chitter.getUsersSignedUp().getListofUsers())

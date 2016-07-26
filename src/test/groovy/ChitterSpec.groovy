@@ -98,6 +98,32 @@ class ChitterSpec extends Specification {
     chitter.viewUserPosts('Spike').find {it['post'].getMessage() == 'A random post not by Spike'} == null
   }
 
+  def 'no followers at start'() {
+    given:
+    chitter.login('Spike')
+
+    expect:
+    chitter.getActiveUser().getFollowers().size() == 0
+  }
+
+  // def 'can follow someone'() {
+  //   given:
+  //   chitter.login('Leo')
+  //   chitter.logOut()
+  //   chitter.login('Spike')
+  //
+  //   when:
+  //   chitter.follower('Leo')
+  //
+  //   then:
+  //   chitter.getActiveUser().getFollowers()[1].getName() =='Leo'
+  //   chitter.getActiveUser().getFollowers().size() == 1
+  // }
+
+
+  // def 'can only follow someone if they are a user'() {
+  //   //chitter.follow(name)
+  // }
 
   // spying on  a method call is not working
   // def 'Chitter can use login '() {
