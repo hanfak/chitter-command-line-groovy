@@ -4,7 +4,7 @@ This is an implementation of a console-based social networking application (simi
 
 This is built using Groovy, using Gradle as the build system, and Spock as the testing framework.
 
-Here are the instructions for running the program (WIP)
+Here are the [instructions](instructions.md) for running the program (WIP)
 
 ### User Story 1
 
