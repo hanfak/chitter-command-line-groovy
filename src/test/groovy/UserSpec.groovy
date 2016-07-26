@@ -22,7 +22,8 @@ class UserSpec extends Specification {
     spike.addFollower(nikesh)
 
     then:
-    spike.getFollowers()[0].getName() == 'Leo'
-    spike.getFollowers()[1].getName() == 'Nikesh'
+    spike.getFollowers().size() == 3
+    spike.getFollowers()[1].getName() == 'Leo'
+    spike.getFollowers()[2].getName() == 'Nikesh'
   }
 }

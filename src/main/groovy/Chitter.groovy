@@ -49,9 +49,21 @@ class Chitter {
     getActiveUser().addFollower(userToFollow)
   }
 
-  private findAUsersPosts(userName) {
-    def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
-    this.viewPosts().findAll {it['user'] == theUser}
+  private def findAUsersPosts(userName) {
+    if(getActiveUser() && userName == getActiveUser().getName()) {
+      def userTimeLinePosts = []
+      this.viewPosts().each { post ->
+        this.getActiveUser().getFollowers().each { follower ->
+          if(post['user'].getName() == follower.getName()) {
+            userTimeLinePosts.push(post)
+          }
+        }
+      }
+      userTimeLinePosts
+    } else {
+      def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
+      this.viewPosts().findAll {it['user'] == theUser}
+    }
   }
 
   private def createPost(message) {
@@ -70,7 +82,6 @@ class OnlyLoggedInUsersCanPostException extends Exception {
     super(message)
   }
 }
-
 
 class UserDoesNotExistException extends Exception {
   UserDoesNotExistException(String message) {

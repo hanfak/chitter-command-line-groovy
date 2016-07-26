@@ -32,7 +32,6 @@ class Users {
     this.activeUser = null
   }
 
-
   def lookForUser(name) {
     this.listOfUsers.find {it.getName() == name}
   }

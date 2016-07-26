@@ -98,12 +98,13 @@ class ChitterSpec extends Specification {
     chitter.viewUserPosts('Spike').find {it['post'].getMessage() == 'A random post not by Spike'} == null
   }
 
-  def 'no followers at start'() {
+  def 'it is it\'s own follow at start'() {
     given:
     chitter.login('Spike')
 
     expect:
-    chitter.getActiveUser().getFollowers().size() == 0
+    chitter.getActiveUser().getFollowers().size() == 1
+    chitter.getActiveUser().getName() == 'Spike'
   }
 
   def 'can follow someone'() {
@@ -116,8 +117,8 @@ class ChitterSpec extends Specification {
     chitter.follow('Leo')
 
     then:
-    chitter.getActiveUser().getFollowers()[0].getName() =='Leo'
-    chitter.getActiveUser().getFollowers().size() == 1
+    chitter.getActiveUser().getFollowers()[1].getName() =='Leo'
+    chitter.getActiveUser().getFollowers().size() == 2
   }
 
   def 'cannot follow someone who is not a user'() {
@@ -128,9 +129,36 @@ class ChitterSpec extends Specification {
     chitter.follow('Leo')
 
     then:
-    chitter.getActiveUser().getFollowers().size() == 0
+    chitter.getActiveUser().getFollowers().size() == 1
     def exception = thrown(UserDoesNotExistException)
     exception.message == 'User not follower: User must exist first'
+  }
+
+  def 'view posts of everybody followed'() {
+    when:
+    chitter.login('Leo')
+    chitter.addPost('Other post ')
+    chitter.logOut()
+
+    chitter.login('Spike')
+    chitter.addPost('Hello this is my first post')
+    chitter.addPost('Hello this is my second post')
+    chitter.logOut()
+
+    chitter.login('Nikesh')
+    chitter.addPost('what post by nikesh')
+    chitter.logOut()
+
+    chitter.login('Spike')
+    chitter.follow('Leo')
+    def result = chitter.viewUserPosts()
+
+    then:
+    result[0]['post'].getMessage() == 'Other post '
+    result[1]['post'].getMessage() == 'Hello this is my first post'
+    result[2]['post'].getMessage() == 'Hello this is my second post'
+    result.size() == 3
+    result.find {it['post'].getMessage() == 'what post by nikesh'} == null
   }
 
 

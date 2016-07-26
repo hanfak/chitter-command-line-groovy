@@ -4,7 +4,7 @@ class User {
 
   def User(name) {
     this.name = name
-    this.followers = []
+    this.followers = [this]
   }
 
   def getName() {

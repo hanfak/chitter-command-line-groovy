@@ -1,7 +1,6 @@
 class Main {
   static main(String[] args) {
-    //User Story 4
-    println()
+
     println('----User Story 4 ----')
 
     def chitter = new Chitter()
@@ -24,14 +23,15 @@ class Main {
 
     chitter.login('Spike')
     println(chitter.follow('Leo'))
-
+    println(chitter.viewUserPosts())
     println(chitter.getActiveUser().getFollowers())
     chitter.follow('Nikesh')
     println(chitter.getActiveUser().getFollowers())
-    println(chitter.follow('han'))
-    println(chitter.getActiveUser().getFollowers())
 
-    chitter.viewUserPosts()
+
+    println(chitter.viewUserPosts())
+    println(chitter.viewUserPosts('Leo'))
+    println(chitter.viewUserPosts('Spike'))
 
 
     //User Story 3
@@ -92,7 +92,7 @@ class Main {
 
 
     //USer story 1
-    //println('----User Story 1 ----')
+    // println('----User Story 1 ----')
     // def chitter = new Chitter()
     // println(chitter.getActiveUser())
     // println(chitter.getUsersSignedUp().getListofUsers())
