@@ -65,6 +65,7 @@ class ChitterSpec extends Specification {
     when:
     chitter.login('Spike')
     chitter.addPost('Hello this is my first post')
+    chitter.addPost('Hello this is my second post')
     chitter.logOut()
     chitter.login('Leo')
     chitter.addPost('A random post not by Spike')
@@ -72,8 +73,9 @@ class ChitterSpec extends Specification {
     chitter.login('Spike')
 
     then:
-    chitter.viewUserPosts().size() == 1
+    chitter.viewUserPosts().size() == 2
     chitter.viewUserPosts()[0]['post'].getMessage() == 'Hello this is my first post'
+    chitter.viewUserPosts()[1]['post'].getMessage() == 'Hello this is my second post'
   }
 
   def 'Can view others posts/timeline'() {
@@ -89,10 +91,11 @@ class ChitterSpec extends Specification {
     then:
     chitter.viewPosts().size() == 3
     chitter.viewUserPosts('Spike').size() == 2
+
     chitter.viewUserPosts('Spike')[0]['post'].getMessage() == 'Hello this is my first post'
     chitter.viewUserPosts('Spike')[1]['post'].getMessage() == 'Hello this is my second post'
-    chitter.viewUserPosts('Spike')[0]['post'].getMessage() != 'A random post not by Spike'
-    chitter.viewUserPosts('Spike')[1]['post'].getMessage() != 'A random post not by Spike'
+
+    chitter.viewUserPosts('Spike').find {it['post'].getMessage() == 'A random post not by Spike'} == null
   }
 
 

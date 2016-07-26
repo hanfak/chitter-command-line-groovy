@@ -34,6 +34,10 @@ class Chitter {
   }
 
   def viewUserPosts(userName = getActiveUser().getName()) {
+    findAUsersPosts(userName)
+  }
+
+  private findAUsersPosts(userName) {
     def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
     this.viewPosts().findAll {it['user'] == theUser}
   }

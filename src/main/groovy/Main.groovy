@@ -10,7 +10,7 @@ class Main {
     chitter.logOut()
 
     chitter.login('Leo')
-    chitter.addPost('Othrepoer ')
+    chitter.addPost('Other post ')
 
     chitter.logOut()
 
@@ -18,11 +18,11 @@ class Main {
     println(chitter.viewPosts())
 
     println('View Leo posts')
-    chitter.viewUserPosts('Leo')
+    println(chitter.viewUserPosts('Leo'))
     chitter.viewUserPosts('Leo').each {println(it['post'].getMessage())}
 
     println('View Spike posts')
-    chitter.viewUserPosts('Spike')
+    println(chitter.viewUserPosts('Spike'))
     chitter.viewUserPosts('Spike').each {println(it['post'].getMessage())}
 
 
