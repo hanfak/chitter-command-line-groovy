@@ -40,6 +40,7 @@ open in browser, the file from root
 
 Run code example
 ```cd src/main/groovy```
+
 ```groovy main.groovy```
 
 Run code individually
