@@ -39,6 +39,9 @@ class Chitter {
 
   def follow(name) {
     def userToFollow = this.getUsersSignedUp().lookForUser(name)
+    if(!userToFollow) {
+      throw new UserDoesNotExistException('User not follower: User must exist first')
+    }
     getActiveUser().addFollower(userToFollow)
   }
 
@@ -60,6 +63,13 @@ class Chitter {
 
 class OnlyLoggedInUsersCanPostException extends Exception {
   OnlyLoggedInUsersCanPostException(String message) {
+    super(message)
+  }
+}
+
+
+class UserDoesNotExistException extends Exception {
+  UserDoesNotExistException(String message) {
     super(message)
   }
 }

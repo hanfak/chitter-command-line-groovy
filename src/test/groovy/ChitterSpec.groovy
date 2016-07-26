@@ -120,6 +120,20 @@ class ChitterSpec extends Specification {
     chitter.getActiveUser().getFollowers().size() == 1
   }
 
+  def 'cannot follow someone who is not a user'() {
+    given:
+    chitter.login('Spike')
+
+    when:
+    chitter.follow('Leo')
+
+    then:
+    chitter.getActiveUser().getFollowers().size() == 0
+    def exception = thrown(UserDoesNotExistException)
+    exception.message == 'User not follower: User must exist first'
+  }
+
+
   // spying on  a method call is not working
   // def 'Chitter can use login '() {
   //   when:

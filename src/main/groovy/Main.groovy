@@ -28,6 +28,8 @@ class Main {
     println(chitter.getActiveUser().getFollowers())
     chitter.follow('Nikesh')
     println(chitter.getActiveUser().getFollowers())
+    println(chitter.follow('han'))
+    println(chitter.getActiveUser().getFollowers())
 
     chitter.viewUserPosts()
 
