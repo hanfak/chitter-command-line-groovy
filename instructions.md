@@ -19,25 +19,38 @@ Install gradle
 Note for non mac users, follow instructions at said websites
 
 Program is in folder
-```/src/main/groovy/```
+```
+/src/main/groovy/
+```
 
-Tests are is folder
-```/src/test/groovy/```
+Tests is in the folder
+```
+/src/test/groovy/
+```
 
 Run all tests
 ```gradle build```
 
-To view test report
+To view test report 
+
 open in browser, the file from root
-```/build/reports/tests/index.html```
+```
+/build/reports/tests/index.html
+```
 
 Run code example
 ```cd src/main/groovy```
 ```groovy main.groovy```
 
 Run code individually
-```cd src/main/groovy```
-```groovysh```
+```
+cd src/main/groovy
+```
+
+```
+groovysh
+```
+
 import classes
 ```import Chitter```
 
