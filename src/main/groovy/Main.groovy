@@ -9,6 +9,7 @@ class Main {
     chitter.addPost('Hello this is my first post')
     chitter.addPost('Hello this is my second post')
     println("spike " + chitter.getActiveUser())
+    println('spikes post ' + chitter.viewUserPosts())
     chitter.logOut()
 
     chitter.login('Leo')
@@ -19,6 +20,8 @@ class Main {
     chitter.login('Nikesh')
     chitter.addPost('what post by nikesh')
     println("nikesh " + chitter.getActiveUser())
+    chitter.follow('Leo')
+
     chitter.logOut()
 
     chitter.login('Spike')
@@ -27,11 +30,25 @@ class Main {
     println(chitter.getActiveUser().getFollowers())
     chitter.follow('Nikesh')
     println(chitter.getActiveUser().getFollowers())
+    println()
+    println('Spikes timelne' + chitter.viewTimeline())
 
 
-    println(chitter.viewUserPosts())
-    println(chitter.viewUserPosts('Leo'))
-    println(chitter.viewUserPosts('Spike'))
+    // println(chitter.viewUserPosts())
+    println()
+    // println(chitter.viewUserPosts('Leo'))
+    println('user posts')
+    println('second method leo time line' + chitter.viewTimeline('Leo'))
+      println('second method spike time line' + chitter.viewTimeline('Spike'))
+      println('spikes post ' + chitter.viewUserPosts('Spike'))
+      println('nikeshs post ' + chitter.viewUserPosts('Nikesh'))
+
+      println()
+      println('user timelines')
+      println(chitter.viewTimeline('Nikesh'))
+
+
+    // println(chitter.viewUserPosts('Spike'))
 
 
     //User Story 3

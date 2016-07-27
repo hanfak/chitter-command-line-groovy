@@ -34,11 +34,25 @@ class Chitter {
   }
 
   def viewUserPosts(userName = getActiveUser().getName()) {
-    findAUsersPosts(userName)
+    def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
+    this.viewPosts().findAll {it['user'] == theUser}
   }
 
   def follow(name) {
     addUserToFollowers(name)
+  }
+
+  def viewTimeline(userName = getActiveUser().getName() ) {
+    def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
+    def userTimeLinePosts = []
+    this.viewPosts().each { post ->
+      theUser.getFollowers().each { follower ->
+        if(post['user'].getName() == follower.getName()) {
+          userTimeLinePosts.push(post)
+        }
+      }
+    }
+    userTimeLinePosts
   }
 
   private def addUserToFollowers(name) {
@@ -47,23 +61,6 @@ class Chitter {
       throw new UserDoesNotExistException('User not follower: User must exist first')
     }
     getActiveUser().addFollower(userToFollow)
-  }
-
-  private def findAUsersPosts(userName) {
-    if(getActiveUser() && userName == getActiveUser().getName()) {
-      def userTimeLinePosts = []
-      this.viewPosts().each { post ->
-        this.getActiveUser().getFollowers().each { follower ->
-          if(post['user'].getName() == follower.getName()) {
-            userTimeLinePosts.push(post)
-          }
-        }
-      }
-      userTimeLinePosts
-    } else {
-      def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
-      this.viewPosts().findAll {it['user'] == theUser}
-    }
   }
 
   private def createPost(message) {

@@ -61,7 +61,7 @@ class ChitterSpec extends Specification {
     chitter.viewPosts()[0]['post'].getMessage() == 'Hello this is my first post'
   }
 
-  def 'Can view my posts/timeline'() {
+  def 'Can view my posts'() {
     when:
     chitter.login('Spike')
     chitter.addPost('Hello this is my first post')
@@ -78,7 +78,7 @@ class ChitterSpec extends Specification {
     chitter.viewUserPosts()[1]['post'].getMessage() == 'Hello this is my second post'
   }
 
-  def 'Can view others posts/timeline'() {
+  def 'Can view others posts'() {
     when:
     chitter.login('Spike')
     chitter.addPost('Hello this is my first post')
@@ -134,7 +134,31 @@ class ChitterSpec extends Specification {
     exception.message == 'User not follower: User must exist first'
   }
 
-  def 'view posts of everybody followed'() {
+  def 'view timeline of other user'() {
+    when:
+    chitter.login('Leo')
+    chitter.addPost('Other post ')
+    chitter.logOut()
+
+    chitter.login('Spike')
+    chitter.addPost('Hello this is my first post')
+    chitter.logOut()
+
+    chitter.login('Nikesh')
+    chitter.addPost('what post by nikesh')
+    chitter.follow('Leo')
+    chitter.logOut()
+
+    def result = chitter.viewTimeline('Nikesh')
+
+    then:
+    result[0]['post'].getMessage() == 'Other post '
+    result[1]['post'].getMessage() == 'what post by nikesh'
+    result.size() == 2
+    result.find {it['post'].getMessage() == 'Hello this is my first post'} == null
+  }
+
+  def 'view timeline of active user'() {
     when:
     chitter.login('Leo')
     chitter.addPost('Other post ')
@@ -151,7 +175,7 @@ class ChitterSpec extends Specification {
 
     chitter.login('Spike')
     chitter.follow('Leo')
-    def result = chitter.viewUserPosts()
+    def result = chitter.viewTimeline()
 
     then:
     result[0]['post'].getMessage() == 'Other post '
@@ -161,7 +185,7 @@ class ChitterSpec extends Specification {
     result.find {it['post'].getMessage() == 'what post by nikesh'} == null
   }
 
-
+  
   // spying on  a method call is not working
   // def 'Chitter can use login '() {
   //   when:
