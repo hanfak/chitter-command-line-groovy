@@ -1,7 +1,7 @@
 import spock.lang.*
 
 class UsersSpec extends Specification {
-  def Users
+  def users
 
   def setup() {
     users = new Users()

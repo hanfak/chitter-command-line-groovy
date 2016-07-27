@@ -48,7 +48,7 @@ class Main {
       println(chitter.viewTimeline('Nikesh'))
 
 
-    // println(chitter.viewUserPosts('Spike'))
+    println(chitter.viewUserPosts('Spike'))
 
 
     //User Story 3

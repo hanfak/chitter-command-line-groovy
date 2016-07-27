@@ -26,14 +26,17 @@ class Chitter {
   }
 
   def addPost(message) {
+    //this.posts.createPost(message,getActiveUser())
     this.createPost(message)
   }
 
   def viewPosts() {
+    // this.posts.getListOfPosts()
     this.posts
   }
 
   def viewUserPosts(userName = getActiveUser().getName()) {
+    // this.posts.findAllPostsByUser(userName)
     this.findAllPostsByUser(userName)
   }
 
@@ -42,6 +45,8 @@ class Chitter {
   }
 
   def viewTimeline(userName   = getActiveUser().getName() ) {
+    // def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
+    // this.posts.findAUsersFollowersPosts( user)
     this.findAUsersFollowersPosts(userName)
   }
 

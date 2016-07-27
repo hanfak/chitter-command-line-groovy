@@ -37,7 +37,20 @@ class ChitterSpec extends Specification {
     then:
     chitter.getActiveUser() == null
   }
+  //Need to use a spy
+  def 'can follow someone'() {
+    given:
+    chitter.login('Leo')
+    chitter.logOut()
+    chitter.login('Spike')
 
+    when:
+    chitter.follow('Leo')
+
+    then:
+    chitter.getActiveUser().getFollowers()[1].getName() =='Leo'
+  }
+  ////done
   def 'at start number of posts is 0'() {
     expect:
     chitter.viewPosts().size() == 0
@@ -62,6 +75,7 @@ class ChitterSpec extends Specification {
     chitter.viewPosts().size() == 1
     chitter.viewPosts()[0]['post'].getMessage() == 'Hello this is my first post'
   }
+
 
   def 'Can view my posts'() {
     when:
@@ -99,21 +113,9 @@ class ChitterSpec extends Specification {
 
     chitter.viewUserPosts('Spike').find {it['post'].getMessage() == 'A random post not by Spike'} == null
   }
+  ////
 
-  //Need to use a spy
-  def 'can follow someone'() {
-    given:
-    chitter.login('Leo')
-    chitter.logOut()
-    chitter.login('Spike')
-
-    when:
-    chitter.follow('Leo')
-
-    then:
-    chitter.getActiveUser().getFollowers()[1].getName() =='Leo'
-  }
-
+  //////
   def 'view timeline of other user'() {
     when:
     chitter.login('Leo')
