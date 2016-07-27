@@ -4,6 +4,7 @@ This is an implementation of a console-based social networking application (simi
 
 This is built using Groovy, using Gradle as the build system, and Spock as the testing framework.
 
+Although, I have a created software that satisfies the user stories, I still have some stuff undone to improve the design and test, cover edge cases etc. These can be seen here [list of things to do](to-do.md)
 Here are the [instructions](instructions.md) for running the program (WIP)
 
 ### User Story 1
