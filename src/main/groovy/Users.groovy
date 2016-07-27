@@ -32,11 +32,25 @@ class Users {
     this.activeUser = null
   }
 
-  def lookForUser(name) {
+  def followAUser(name) {
+    def userToFollow = this.lookForUser(name)
+    if(!userToFollow) {
+      throw new UserDoesNotExistException('User not follower: User must exist first')
+    }
+    getLoggedInUser().addFollower(userToFollow)
+  } 
+
+  private def lookForUser(name) {
     this.listOfUsers.find {it.getName() == name}
   }
 
   private def findUser(user) {
     this.listOfUsers.find { it.getName() == user.getName()}
+  }
+}
+
+class UserDoesNotExistException extends Exception {
+  UserDoesNotExistException(String message) {
+    super(message)
   }
 }

@@ -19,6 +19,7 @@ class ChitterSpec extends Specification {
     chitter.getUsersSignedUp().getListofUsers() == []
   }
 
+  //Need to use a spy
   def 'Chitter can login a user'() {
     when:
     chitter.login('Spike')
@@ -27,6 +28,7 @@ class ChitterSpec extends Specification {
     chitter.getActiveUser().getName() == 'Spike'
   }
 
+  //Need to use a spy
   def 'Chitter can logout a user'() {
     when:
     chitter.login('Spike')
@@ -98,15 +100,7 @@ class ChitterSpec extends Specification {
     chitter.viewUserPosts('Spike').find {it['post'].getMessage() == 'A random post not by Spike'} == null
   }
 
-  def 'it is it\'s own follow at start'() {
-    given:
-    chitter.login('Spike')
-
-    expect:
-    chitter.getActiveUser().getFollowers().size() == 1
-    chitter.getActiveUser().getName() == 'Spike'
-  }
-
+  //Need to use a spy
   def 'can follow someone'() {
     given:
     chitter.login('Leo')
@@ -118,20 +112,6 @@ class ChitterSpec extends Specification {
 
     then:
     chitter.getActiveUser().getFollowers()[1].getName() =='Leo'
-    chitter.getActiveUser().getFollowers().size() == 2
-  }
-
-  def 'cannot follow someone who is not a user'() {
-    given:
-    chitter.login('Spike')
-
-    when:
-    chitter.follow('Leo')
-
-    then:
-    chitter.getActiveUser().getFollowers().size() == 1
-    def exception = thrown(UserDoesNotExistException)
-    exception.message == 'User not follower: User must exist first'
   }
 
   def 'view timeline of other user'() {
@@ -185,7 +165,6 @@ class ChitterSpec extends Specification {
     result.find {it['post'].getMessage() == 'what post by nikesh'} == null
   }
 
-  
   // spying on  a method call is not working
   // def 'Chitter can use login '() {
   //   when:
@@ -201,5 +180,17 @@ class ChitterSpec extends Specification {
   //
   //   then:
   //   1 * users.logOutUser()
+  // }
+
+  // def 'Chitter can follow '() {
+  //   given:
+  //   chitter.login('Leo')
+  //   chitter.logOut()
+  //   chitter.login('Spike')
+  //
+  //   when:
+  //   chitter.follow('Leo')
+  //   then:
+  //   1 * users.follow("Spike")
   // }
 }

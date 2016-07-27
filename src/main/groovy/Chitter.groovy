@@ -26,7 +26,7 @@ class Chitter {
   }
 
   def addPost(message) {
-    createPost(message)
+    this.createPost(message)
   }
 
   def viewPosts() {
@@ -34,15 +34,15 @@ class Chitter {
   }
 
   def viewUserPosts(userName = getActiveUser().getName()) {
-    findAllPostsByUser(userName)
+    this.findAllPostsByUser(userName)
   }
 
   def follow(name) {
-    addUserToFollowers(name)
+    this.getUsersSignedUp().followAUser(name)
   }
 
   def viewTimeline(userName   = getActiveUser().getName() ) {
-    findAUsersFollowersPosts(userName)
+    this.findAUsersFollowersPosts(userName)
   }
 
   //Private methods
@@ -64,14 +64,6 @@ class Chitter {
     userTimeLinePosts
   }
 
-  private def addUserToFollowers(name) {
-    def userToFollow = this.getUsersSignedUp().lookForUser(name)
-    if(!userToFollow) {
-      throw new UserDoesNotExistException('User not follower: User must exist first')
-    }
-    getActiveUser().addFollower(userToFollow)
-  }
-
   private def createPost(message) {
     def aPost = postKlass.newInstance(message)
 
@@ -85,12 +77,6 @@ class Chitter {
 
 class OnlyLoggedInUsersCanPostException extends Exception {
   OnlyLoggedInUsersCanPostException(String message) {
-    super(message)
-  }
-}
-
-class UserDoesNotExistException extends Exception {
-  UserDoesNotExistException(String message) {
     super(message)
   }
 }

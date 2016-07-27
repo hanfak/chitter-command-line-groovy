@@ -71,7 +71,42 @@ class UsersSpec extends Specification {
     def result = users.lookForUser('Nikesh')
 
     then:
-    result.getName() == 'Nikesh' 
+    result.getName() == 'Nikesh'
   }
 
+  def 'it is it\'s own follower at start'() {
+    given:
+    users.loginUser('Spike')
+
+    expect:
+    users.getLoggedInUser().getFollowers().size() == 1
+    users.getLoggedInUser().getName() == 'Spike'
+  }
+
+  def 'can follow someone'() {
+    given:
+    users.loginUser('Leo')
+    users.logOutUser()
+    users.loginUser('Spike')
+
+    when:
+    users.followAUser('Leo')
+
+    then:
+    users.getLoggedInUser().getFollowers()[1].getName() =='Leo'
+    users.getLoggedInUser().getFollowers().size() == 2
+  }
+
+  def 'cannot follow someone who is not a user'() {
+    given:
+    users.loginUser('Spike')
+
+    when:
+    users.followAUser('Leo')
+
+    then:
+    users.getLoggedInUser().getFollowers().size() == 1
+    def exception = thrown(UserDoesNotExistException)
+    exception.message == 'User not follower: User must exist first'
+  }
 }
