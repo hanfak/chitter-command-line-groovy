@@ -1,5 +1,5 @@
 class Posts {
-  def listOfPosts
+  private def listOfPosts
   private def postKlass
 
   def Posts( Class postClass = Post) {

@@ -51,7 +51,7 @@ class PostsSpec extends Specification {
     posts.findAllPostsByUser('Spike').find {it['post'].getMessage() == 'A random post not by Spike'} == null
   }
 
-  def 'view timeline of other user'() {
+  def 'view timeline of user'() {
     given:
     def leo = new User('Leo')
     def nikesh = new User('Nikesh')
@@ -61,7 +61,6 @@ class PostsSpec extends Specification {
     posts.createPost('A random post not by Spike', leo)
     posts.createPost('Hello this is my first post', spike)
     posts.createPost('what post by nikesh', nikesh)
-
 
     def result = posts.findAUsersFollowersPosts(nikesh)
 

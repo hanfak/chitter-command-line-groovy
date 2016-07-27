@@ -30,25 +30,27 @@ class Main {
     println(chitter.getActiveUser().getFollowers())
     chitter.follow('Nikesh')
     println(chitter.getActiveUser().getFollowers())
+    println(chitter.getActiveUser())
+
     println()
     println('Spikes timelne' + chitter.viewTimeline())
 
 
-    // println(chitter.viewUserPosts())
-    println()
-    // println(chitter.viewUserPosts('Leo'))
-    println('user posts')
-    println('second method leo time line' + chitter.viewTimeline('Leo'))
-      println('second method spike time line' + chitter.viewTimeline('Spike'))
-      println('spikes post ' + chitter.viewUserPosts('Spike'))
-      println('nikeshs post ' + chitter.viewUserPosts('Nikesh'))
-
-      println()
-      println('user timelines')
-      println(chitter.viewTimeline('Nikesh'))
-
-
-    println(chitter.viewUserPosts('Spike'))
+    // // println(chitter.viewUserPosts())
+    // println()
+    // // println(chitter.viewUserPosts('Leo'))
+    // println('user posts')
+    // println('second method leo time line' + chitter.viewTimeline('Leo'))
+    //   println('second method spike time line' + chitter.viewTimeline('Spike'))
+    //   println('spikes post ' + chitter.viewUserPosts('Spike'))
+    //   println('nikeshs post ' + chitter.viewUserPosts('Nikesh'))
+    //
+    //   println()
+    //   println('user timelines')
+    //   println(chitter.viewTimeline('Nikesh'))
+    //
+    //
+    // println(chitter.viewUserPosts('Spike'))
 
 
     //User Story 3

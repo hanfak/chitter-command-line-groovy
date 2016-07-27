@@ -1,6 +1,6 @@
 class User {
-  def name
-  def followers
+  private def name
+  private def followers
 
   def User(name) {
     this.name = name

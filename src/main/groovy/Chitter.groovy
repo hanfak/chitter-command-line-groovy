@@ -3,10 +3,9 @@ class Chitter {
   private def posts
   private def postKlass
 
-  def Chitter(users = new Users(), Class postClass = Post){
+  def Chitter(users = new Users(), posts = new Posts()) {
     this.usersSignedUp = users
-    this.posts = []
-    this.postKlass = postClass
+    this.posts = posts
   }
 
   def getActiveUser(){
@@ -26,62 +25,23 @@ class Chitter {
   }
 
   def addPost(message) {
-    //this.posts.createPost(message,getActiveUser())
-    this.createPost(message)
+    this.posts.createPost(message, getActiveUser())
   }
 
   def viewPosts() {
-    // this.posts.getListOfPosts()
-    this.posts
+    this.posts.getListOfPosts()
   }
 
   def viewUserPosts(userName = getActiveUser().getName()) {
-    // this.posts.findAllPostsByUser(userName)
-    this.findAllPostsByUser(userName)
+    this.posts.findAllPostsByUser(userName)
   }
 
   def follow(name) {
     this.getUsersSignedUp().followAUser(name)
   }
 
-  def viewTimeline(userName   = getActiveUser().getName() ) {
-    // def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
-    // this.posts.findAUsersFollowersPosts( user)
-    this.findAUsersFollowersPosts(userName)
-  }
-
-  //Private methods
-  private def findAllPostsByUser(userName) {
+  def viewTimeline(userName = getActiveUser().getName()) {
     def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
-    this.viewPosts().findAll {it['user'] == theUser}
-  }
-
-  private def findAUsersFollowersPosts(userName) {
-    def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
-    def userTimeLinePosts = []
-    this.viewPosts().each { post ->
-      theUser.getFollowers().each { follower ->
-        if(post['user'].getName() == follower.getName()) {
-          userTimeLinePosts.push(post)
-        }
-      }
-    }
-    userTimeLinePosts
-  }
-
-  private def createPost(message) {
-    def aPost = postKlass.newInstance(message)
-
-    if(this.getActiveUser() == null) {
-      throw new OnlyLoggedInUsersCanPostException('Post not made: User must be logged in first')
-    } else {
-      this.posts.push(['post' : aPost, 'user' : this.getActiveUser()])
-    }
-  }
-}
-
-class OnlyLoggedInUsersCanPostException extends Exception {
-  OnlyLoggedInUsersCanPostException(String message) {
-    super(message)
+    this.posts.findAUsersFollowersPosts(theUser)
   }
 }
