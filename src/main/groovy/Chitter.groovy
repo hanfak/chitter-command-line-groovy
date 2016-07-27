@@ -34,15 +34,24 @@ class Chitter {
   }
 
   def viewUserPosts(userName = getActiveUser().getName()) {
-    def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
-    this.viewPosts().findAll {it['user'] == theUser}
+    findAllPostsByUser(userName)
   }
 
   def follow(name) {
     addUserToFollowers(name)
   }
 
-  def viewTimeline(userName = getActiveUser().getName() ) {
+  def viewTimeline(userName   = getActiveUser().getName() ) {
+    findAUsersFollowersPosts(userName)
+  }
+
+  //Private methods
+  private def findAllPostsByUser(userName) {
+    def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
+    this.viewPosts().findAll {it['user'] == theUser}
+  }
+
+  private def findAUsersFollowersPosts(userName) {
     def theUser = getUsersSignedUp().getListofUsers().find {it.getName() == userName}
     def userTimeLinePosts = []
     this.viewPosts().each { post ->
