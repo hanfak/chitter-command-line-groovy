@@ -38,7 +38,7 @@ class Users {
       throw new UserDoesNotExistException('User not follower: User must exist first')
     }
     getLoggedInUser().addFollower(userToFollow)
-  } 
+  }
 
   private def lookForUser(name) {
     this.listOfUsers.find {it.getName() == name}

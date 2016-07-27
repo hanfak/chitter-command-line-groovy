@@ -1,7 +1,6 @@
 class Chitter {
   private def usersSignedUp
   private def posts
-  private def postKlass
 
   def Chitter(users = new Users(), posts = new Posts()) {
     this.usersSignedUp = users

@@ -1,3 +1,4 @@
+## Setup
 Install Java SDK
 
 ```
@@ -18,6 +19,8 @@ Install gradle
 
 Note for non mac users, follow instructions at said websites
 
+## Running the program and tests
+
 Program is in folder
 ```
 /src/main/groovy/
@@ -28,25 +31,45 @@ Tests is in the folder
 /src/test/groovy/
 ```
 
+### Run tests
 Run all tests
+
 ```gradle build```
 
-To view test report 
+To view test report
 
 open in browser, the file from root
 ```
 /build/reports/tests/index.html
 ```
 
-Run code example
+### Run code example
+
+go to
 ```cd src/main/groovy```
 
-```groovy main.groovy```
+For first user story
+```groovy UserStory1.groovy```
 
-Run code individually
+For second user story
+```groovy UserStory2.groovy```
+
+For third user story
+```groovy UserStory3.groovy```
+
+For fourth user story
+```groovy UserStory4.groovy```
+
+
+
+### Run code individually
+Go to
+
 ```
 cd src/main/groovy
 ```
+
+open groovy shell
 
 ```
 groovysh
@@ -56,20 +79,48 @@ import classes
 ```import Chitter```
 
 To use
+
 To start
+```java
+chitter = new Chitter()
+```
 
 To signin
+```java
+chitter.login('Spike')
+```
 
 To addpost
+```java
+chitter.addPost('This is s a message')
+```
+
+To follow a user
+```java
+chitter.follow('Leo')
+```
 
 To view my time line
+```java
+chitter.viewTimeline()
+```
+
+To view others time line
+```java
+chitter.viewTimeline('Leo')
+```
 
 To view others posts
+```java
+chitter.viewUserPosts('Spike')
+```
 
 To view all posts
+```java
+chitter.viewPosts()
+```
 
 To sign out
-
-To follow users
-
-To view time line (show others posts)
+```java
+chitter.logOut()
+```
