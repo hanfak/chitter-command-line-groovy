@@ -21,7 +21,7 @@ class PostsSpec extends Specification {
 
     then:
     posts.getListOfPosts().size() == 1
-    posts.getListOfPosts()[0]['post'].getMessage() == 'Hello this is my first post'
+    posts.getListOfPosts()[0].getMessage() == 'Hello this is my first post'
   }
 
   def 'Cannot add a post if no active user'() {
@@ -46,9 +46,9 @@ class PostsSpec extends Specification {
 
     then:
     posts.findAllPostsByUser('Spike').size() == 2
-    posts.findAllPostsByUser('Spike')[0]['post'].getMessage() == 'Hello this is my first post'
-    posts.findAllPostsByUser('Spike')[1]['post'].getMessage() == 'Hello this is my second post'
-    posts.findAllPostsByUser('Spike').find {it['post'].getMessage() == 'A random post not by Spike'} == null
+    posts.findAllPostsByUser('Spike')[0].getMessage() == 'Hello this is my first post'
+    posts.findAllPostsByUser('Spike')[1].getMessage() == 'Hello this is my second post'
+    posts.findAllPostsByUser('Spike').find {it.getMessage() == 'A random post not by Spike'} == null
   }
 
   def 'view timeline of user'() {
@@ -65,10 +65,10 @@ class PostsSpec extends Specification {
     def result = posts.findAUsersFollowersPosts(nikesh)
 
     then:
-    result[0]['post'].getMessage() == 'A random post not by Spike'
-    result[1]['post'].getMessage() == 'what post by nikesh'
+    result[0].getMessage() == 'A random post not by Spike'
+    result[1].getMessage() == 'what post by nikesh'
     result.size() == 2
-    result.find {it['post'].getMessage() == 'Hello this is my first post'} == null
+    result.find {it.getMessage() == 'Hello this is my first post'} == null
   }
 
 }

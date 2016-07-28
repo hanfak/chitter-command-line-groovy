@@ -20,6 +20,6 @@ class UserStory2 {
     println()
 
     println('Spike posts')
-    chitter.viewUserPosts().each {println(it['post'].getMessage())}
+    chitter.viewUserPosts().each {println(it.getMessage())}
   }
 }

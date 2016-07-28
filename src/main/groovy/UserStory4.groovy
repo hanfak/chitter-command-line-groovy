@@ -43,11 +43,11 @@ class UserStory4 {
 
     println()
     println('Spike\'s timeline' + chitter.viewTimeline())
-    chitter.viewTimeline().each {println(it['post'].getMessage()+ ' by ' +  it['user'].getName())}
+    chitter.viewTimeline().each {println(it.getMessage()+ ' by ' +  it.getAuthor().getName())}
     println()
 
     println('Nikesh\'s timelne' + chitter.viewTimeline('Nikesh'))
-    chitter.viewTimeline('Nikesh').each {println(it['post'].getMessage() + ' by ' +  it['user'].getName())}
+    chitter.viewTimeline('Nikesh').each {println(it.getMessage() + ' by ' +  it.getAuthor().getName())}
     println()
 
 

@@ -59,7 +59,7 @@ class ChitterSpec extends Specification {
 
     then:
     chitter.viewPosts().size() == 1
-    chitter.viewPosts()[0]['post'].getMessage() == 'Hello this is my first post'
+    chitter.viewPosts()[0].getMessage() == 'Hello this is my first post'
   }
 
   //Need a to spy on this
@@ -76,8 +76,8 @@ class ChitterSpec extends Specification {
 
     then:
     chitter.viewUserPosts().size() == 2
-    chitter.viewUserPosts()[0]['post'].getMessage() == 'Hello this is my first post'
-    chitter.viewUserPosts()[1]['post'].getMessage() == 'Hello this is my second post'
+    chitter.viewUserPosts()[0].getMessage() == 'Hello this is my first post'
+    chitter.viewUserPosts()[1].getMessage() == 'Hello this is my second post'
   }
 
   //Need to do a spy
@@ -101,11 +101,11 @@ class ChitterSpec extends Specification {
     def result = chitter.viewTimeline()
 
     then:
-    result[0]['post'].getMessage() == 'Other post '
-    result[1]['post'].getMessage() == 'Hello this is my first post'
-    result[2]['post'].getMessage() == 'Hello this is my second post'
+    result[0].getMessage() == 'Other post '
+    result[1].getMessage() == 'Hello this is my first post'
+    result[2].getMessage() == 'Hello this is my second post'
     result.size() == 3
-    result.find {it['post'].getMessage() == 'what post by nikesh'} == null
+    result.find {it.getMessage() == 'what post by nikesh'} == null
   }
 
   // spying on  a method call is not working

@@ -12,24 +12,24 @@ class Posts {
   }
 
   def createPost(message, user) {
-    def aPost = postKlass.newInstance(message)
+    def aPost = postKlass.newInstance(message, user)
 
     if(user == null) {
       throw new OnlyLoggedInUsersCanPostException('Post not made: User must be logged in first')
     } else {
-      this.listOfPosts.push(['post' : aPost, 'user' : user])
+      this.listOfPosts.push(aPost)
     }
   }
 
   def findAllPostsByUser(userName) {
-    this.getListOfPosts().findAll {it['user'].getName() == userName}
+    this.getListOfPosts().findAll {it.getAuthor().getName() == userName}
   }
 
   def findAUsersFollowersPosts(user) {
     def userTimeLinePosts = []
     this.getListOfPosts().each { post ->
       user.getFollowers().each { follower ->
-        if(post['user'].getName() == follower.getName()) {
+        if(post.getAuthor().getName() == follower.getName()) {
           userTimeLinePosts.push(post)
         }
       }

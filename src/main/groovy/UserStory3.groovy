@@ -29,11 +29,11 @@ class UserStory3 {
 
     println('View Leo posts')
     println(chitter.viewUserPosts('Leo'))
-    chitter.viewUserPosts('Leo').each {println(it['post'].getMessage())}
+    chitter.viewUserPosts('Leo').each {println(it.getMessage())}
     println()
     println('View Spike posts')
     println(chitter.viewUserPosts('Spike'))
-    chitter.viewUserPosts('Spike').each {println(it['post'].getMessage())}
+    chitter.viewUserPosts('Spike').each {println(it.getMessage())}
     println()
 
   }

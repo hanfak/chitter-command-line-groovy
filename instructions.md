@@ -62,7 +62,7 @@ For fourth user story
 
 
 
-### Run code individually
+### Run code individually in command line
 Go to
 
 ```
@@ -78,7 +78,7 @@ groovysh
 import classes
 ```import Chitter```
 
-To use
+#### To use
 
 To start
 ```java
