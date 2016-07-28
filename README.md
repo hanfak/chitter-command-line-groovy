@@ -36,7 +36,7 @@ Following: *Leo* can subscribe to *Spike* and *Nikesh's* timelines, and view an 
 
 ## Solution
 
-I have not used the language Groovy or it's testing framework, Spock, or Gradle before. I spent some time before implementing this solution doing a Fizzbuzz kata and an airport kata, to help me understand the syntax, how to run the program, how to test, and setup a project structure.
+I have not used the language Groovy or it's testing framework, Spock, or Gradle before, so this was a challenge. I spent some time beforehand implementing this solution doing a Fizzbuzz kata and an airport kata, to help me understand the syntax, how to run the program, how to test, setup a project structure and iron out any issuses.
 
 I aimed to produce this software so that it adheres to the principles of good software design, such as SOLID, encapsulation, DRY, as much as possible.
 
