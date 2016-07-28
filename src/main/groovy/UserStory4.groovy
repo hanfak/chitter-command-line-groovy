@@ -23,28 +23,30 @@ class UserStory4 {
     println("Nikesh add a post: 'what post by nikesh'")
     println('Nikesh follows Leo')
     chitter.follow('Leo')
+    println('Nikesh Follows:')
+    println(chitter.getActiveUser().getFollowers())
     chitter.logOut()
     println()
 
     chitter.login('Spike')
     println('Spike follows Leo')
 
-    println(chitter.follow('Leo'))
-    println(chitter.viewUserPosts())
+    chitter.follow('Leo')
+    println('Spikes Follows:')
     println(chitter.getActiveUser().getFollowers())
     println()
+
     println('Spike follows Nikesh')
-
     chitter.follow('Nikesh')
+    println('Spikes Follows:')
     println(chitter.getActiveUser().getFollowers())
-    println(chitter.getActiveUser())
 
     println()
-    println('Spikes timelne' + chitter.viewTimeline())
+    println('Spike\'s timeline' + chitter.viewTimeline())
     chitter.viewTimeline().each {println(it['post'].getMessage()+ ' by ' +  it['user'].getName())}
     println()
 
-    println('Nikesh timelne' + chitter.viewTimeline('Nikesh'))
+    println('Nikesh\'s timelne' + chitter.viewTimeline('Nikesh'))
     chitter.viewTimeline('Nikesh').each {println(it['post'].getMessage() + ' by ' +  it['user'].getName())}
     println()
 

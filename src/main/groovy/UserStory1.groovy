@@ -24,5 +24,12 @@ class UserStory1 {
     chitter.logOut()
     println()
     println('list of users ' + chitter.getUsersSignedUp().getListofUsers())
+
+    println()
+    println("login Spike for again 'chitter.login('Spike')'")
+    chitter.login('Spike')
+    println('active user is '  + chitter.getActiveUser().getName())
+    println('active user object is ' + chitter.getActiveUser())
+    println('list of users ' + chitter.getUsersSignedUp().getListofUsers())
   }
 }
