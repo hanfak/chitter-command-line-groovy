@@ -8,7 +8,6 @@
 - Refactor method for Posts#findAUsersFollowersPosts(user), Looks too complicated???
   - Try deleting messages which do not match the users in followers
 
-- List of posts, contains an array of maps (of a post and user object). Want to change the map to just a Post object
 
 - Deal with following edge cases
   - If not logged in canot follow a user

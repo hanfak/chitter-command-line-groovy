@@ -4,6 +4,8 @@ Install Java SDK
 ```
 1. Download and install from here
 
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
 2. Type in Terminal /usr/libexec/java_home -V
 to get something like
 1.7.0_55, x86_64:	"Java SE 7"	/Library/Java/JavaVirtualMachines/jdk1.7.0_55.jdk/Contents/Home
@@ -17,7 +19,9 @@ Install groovy
 Install gradle
 ```brew install gradle```
 
-Note for non mac users, follow instructions at said websites
+Note for non mac users, follow instructions at the following websites
+<http://groovy-lang.org/install.html>
+<https://docs.gradle.org/current/userguide/installation.html>
 
 ## Running the program and tests
 
@@ -46,7 +50,9 @@ open in browser, the file from root
 ### Run code example
 
 go to
-```cd src/main/groovy```
+```bash
+cd src/main/groovy
+```
 
 For first user story
 ```groovy UserStory1.groovy```
@@ -65,18 +71,20 @@ For fourth user story
 ### Run code individually in command line
 Go to
 
-```
+```bash
 cd src/main/groovy
 ```
 
 open groovy shell
 
-```
+```bash
 groovysh
 ```
 
 import classes
-```import Chitter```
+```java
+import Chitter
+```
 
 #### To use
 
